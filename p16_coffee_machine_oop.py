@@ -2,13 +2,9 @@ from p16_menu import Menu, MenuItem
 from p16_coffee_maker import CoffeeMaker
 from p16_money_machine import MoneyMachine
 
-latte = MenuItem("latte", 200, 150, 24, 2.5)
-cappucino = MenuItem("capuccino", 250, 100, 24, 3.00)
-espresso = MenuItem("espresso", 50, 0, 18, 1.50)
-
 menu = Menu()
 coffee_maker = CoffeeMaker()
-money_machine = MoneyMachine()
+money_machine = MoneyMachine() #snake_case for objects and PascalCase for classes
 
 is_on = True
 
