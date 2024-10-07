@@ -7,23 +7,25 @@ class Solution:
 			sentence1 = sentence2
 			sentence2 = temp
 		#sen1 short #sen2 long
-		length = list(sentence1)
-		sen1 = sentence1.list()
-		print(sen1)
-		print("length:", length)
+		len1 = len(sentence1)
+		print("len1:", len1)
+		len2 = len(sentence2)
+		print("len2:", len2)
+		sentence1.lower()
+		sentence2.lower()
 		i = 0
 		j = 0
-		for c in sentence2[j]:
-			print(c)
-			if c in sentence1[i]:
-				i += 1
-				print(c)
-			elif i == length or i == length + 1:
+		while i < len2:
+			if j == len1:
+				print("i:", i, "j:", j)
 				return True
+			if sentence2[i] == sentence1[j]:
+				j += 1
 			else:
-				i = 0
-			j += 1
-		print(i)
+				j = 0	
+			i += 1
+		if j == len1:
+			return True	
 		return False
 
 #below is not fully correct
