@@ -1,5 +1,9 @@
 from typing import List
 
+#TO BE CONTINUED
+
+
+#this is not also perfect
 class Solution:
 	def areSentencesSimilar(self, sentence1: str, sentence2: str) -> bool:
 		if len(sentence1) > len(sentence2): 
