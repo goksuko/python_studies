@@ -13,6 +13,7 @@ import string
 
 VOWELS = 'aeiou'
 CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
+ALPHA = VOWELS + CONSONANTS
 HAND_SIZE = 7
 
 SCRABBLE_LETTER_VALUES = {
@@ -92,12 +93,13 @@ def get_word_score(word, n):
     returns: int >= 0
     """
     # word_len: int
+    word = str.lower(word)
     word_len = len(word)
     # p1: int for first component
     p1 = 0
     for letter in word:
         if letter != '*':
-            p1 += SCRABBLE_LETTER_VALUES[letter.lower()]
+            p1 += SCRABBLE_LETTER_VALUES[letter]
     # p2: int for second component
     p2 = 7*word_len - 3*(n - word_len)
     if p2 < 1:
@@ -182,11 +184,16 @@ def update_hand(hand, word):
     returns: dictionary (string -> int)
     """
     new_hand = hand.copy()
-    for letter in word:
-        if letter in new_hand.keys():
-            new_hand[letter.lower()] = new_hand[letter.lower()] - 1 
-            if new_hand.get(letter.lower()) == 0:
-                del new_hand[letter.lower()]
+    for letter in word.lower():
+        if letter in new_hand:
+            new_hand[letter] -= 1
+            if new_hand[letter] == 0:
+                del new_hand[letter]
+        elif letter in VOWELS:
+            if '*' in new_hand:
+                new_hand['*'] -= 1
+                if new_hand['*'] == 0:
+                    del new_hand['*']
     return new_hand
 
 #
@@ -204,32 +211,26 @@ def is_valid_word(word, hand, word_list):
     returns: boolean
     """
     lower_word_list = [w.lower() for w in word_list]
-    if word.lower() not in lower_word_list:
-        return False
+    
+    # Check if the word is in the word list
+    if '*' in word:
+        possible_words = [word.replace('*', vowel) for vowel in VOWELS]
+        if not any(w in lower_word_list for w in possible_words):
+            return False
+    else:
+        if word.lower() not in lower_word_list:
+            return False
+    
+    # Check if the word can be formed with the letters in the hand
     new_hand = hand.copy()
     for letter in word.lower():
-        print(f"{letter}, {new_hand.keys()}")
-#            if letter in VOWELS and '*' in new_hand.keys():
-#                new_hand['*'] = new_hand['*'] - 1
-#                if new_hand['*'] == 0:
-#                    del new_hand['*']
-#            else:
-#                return False
-        if letter == '*' and '*' in new_hand.keys():
-            new_hand['*'] = new_hand['*'] - 1
-            if new_hand['*'] == 0:
-                del new_hand['*']
-        elif letter in new_hand.keys():
-            new_hand[letter.lower()] = new_hand[letter.lower()] - 1 
-            if new_hand.get(letter.lower()) == 0:
-                del new_hand[letter.lower()]
-        elif letter in VOWELS:
-            if '*' in new_hand.keys():
-                new_hand['*'] = new_hand['*'] - 1
-                if new_hand['*'] == 0:
-                    del new_hand['*']
-            else:
-                return False
+        if letter in new_hand:
+            new_hand[letter] -= 1
+            if new_hand[letter] == 0:
+                del new_hand[letter]
+        else:
+            return False
+    
     return True
 
 #
@@ -361,8 +362,15 @@ def substitute_hand(hand, letter):
     letter: string
     returns: dictionary (string -> int)
     """
-    
-    pass  # TO DO... Remove this line when you implement this function
+    new_hand = hand.copy()
+    num = new_hand[letter]
+    for _ in num:
+        new_hand = update_hand(new_hand, letter)
+    x = random.choice(ALPHA)
+    while x in new_hand.keys():
+        x = random.choice(ALPHA)
+    hand[x] = hand.get(x, 0) + num
+    return new_hand
        
     
 def play_game(word_list):
@@ -396,9 +404,62 @@ def play_game(word_list):
     word_list: list of lowercase strings
     """
     
-    print("play_game not implemented.") # TO DO... Remove this line when you implement this function
+    right_for_subs = True
+    replay_hand = True
+    times = 0
+    total_score = 0
+    hand = {}
     
+    total_hands = int(input("Enter total number of hands: "))
+    
+    while (times < total_hands):
+        hand_score = 0
+        begin_of_hand = True
+        while 1:
+            if replay_hand and times != 0:
+                repl = input("Would you like to replay the hand? ")
+                if repl.lower() == "yes":
+                    hand = hand_backup.copy()
+                    replay_hand = False
+                else:
+                    hand = deal_hand(HAND_SIZE)
+                    hand_backup = hand.copy()                    
+            elif begin_of_hand:
+                hand = deal_hand(HAND_SIZE)
+                hand_backup = hand.copy()
+                    
+            display_hand(hand)
+            
+            if right_for_subs and begin_of_hand:
+                subs = input("Would you like to substitute a letter? ")
+                if subs.lower() == "yes":
+                    subs_letter = input("Which letter would you like to replace: ")    
+                    hand = substitute_hand(hand, subs_letter)
+                    display_hand(hand)
+        
+            word = input("Please enter word, or \"!!\" to indicate that you are finished:  ")
+            if word == "!!":
+                break 
+            if is_valid_word(word, hand, word_list):
+                points = get_word_score(word, HAND_SIZE)
+                print(f"\"{word}\" earned {points} points!")
+                hand_score += points
+                print(f"Total score for this hand is {hand_score}.")
+            else:
+                print("That is not a valid word. Please choose another word")
+            hand = update_hand(hand, word)
+            if len(hand) == 0:
+                print("Ran out of letters")
+                break
+            begin_of_hand = False
+        times += 1
+        print(f"Total score for this hand is {hand_score}.")
+        total_score += hand_score
+        print("----------------")
 
+    
+    print(f"Total score is {total_score}.")
+    return total_score    
 
 #
 # Build data structures used for entire session and play game
@@ -408,5 +469,3 @@ def play_game(word_list):
 if __name__ == '__main__':
     word_list = load_words()
     play_game(word_list)
-    hand = deal_hand(HAND_SIZE)
-    play_hand(hand, word_list)
