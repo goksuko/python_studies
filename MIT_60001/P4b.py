@@ -43,21 +43,21 @@ def is_word(word_list, word):
     False
     '''
     word = word.lower()
-    word = word.strip(" !@#$%^&*()-_+={}[]|\:;'<>?,./\"")
+    word = word.strip("\\ !@#$%^&*()-_+={}[]|:;'<>?,./\"")
     return word in word_list
 
 def get_story_string():
     """
     Returns: a story in encrypted text.
     """
-    f = open("story.txt", "r")
+    f = open("P4_story.txt", "r")
     story = str(f.read())
     f.close()
     return story
 
 ### END HELPER CODE ###
 
-WORDLIST_FILENAME = 'words.txt'
+WORDLIST_FILENAME = 'P4_words.txt'
 
 class Message(object):
     def __init__(self, text):
@@ -70,7 +70,8 @@ class Message(object):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        self.message_text = text
+        self.valid_words = load_words("P4_words.txt")
 
     def get_message_text(self):
         '''
@@ -78,7 +79,7 @@ class Message(object):
         
         Returns: self.message_text
         '''
-        pass #delete this line and replace with your code here
+        return self.message_text
 
     def get_valid_words(self):
         '''
@@ -87,7 +88,8 @@ class Message(object):
         
         Returns: a COPY of self.valid_words
         '''
-        pass #delete this line and replace with your code here
+        copy_list = self.valid_words.copy()
+        return copy_list
 
     def build_shift_dict(self, shift):
         '''
@@ -103,7 +105,8 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass #delete this line and replace with your code here
+        letters = string.ascii_letters
+        print(letters)
 
     def apply_shift(self, shift):
         '''
