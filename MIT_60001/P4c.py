@@ -4,7 +4,7 @@
 # Time Spent: x:xx
 
 import string
-from ps4a import get_permutations
+from P4a import get_permutations
 
 ### HELPER CODE ###
 def load_words(file_name):
@@ -45,7 +45,7 @@ def is_word(word_list, word):
     False
     '''
     word = word.lower()
-    word = word.strip(" !@#$%^&*()-_+={}[]|\:;'<>?,./\"")
+    word = word.strip("\\ !@#$%^&*()-_+={}[]|:;'<>?,./\"")
     return word in word_list
 
 

@@ -105,8 +105,10 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        letters = string.ascii_letters
-        print(letters)
+        letters = string.ascii_lowercase + string.ascii_lowercase
+        c_let = string.ascii_uppercase + string.ascii_uppercase
+        dic = dict.fromkeys(letters, letters + shift)
+        print(dic)
 
     def apply_shift(self, shift):
         '''
