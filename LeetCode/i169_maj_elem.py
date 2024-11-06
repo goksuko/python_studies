@@ -1,19 +1,32 @@
 from typing import List
 
 class Solution:
-	def majorityElement(self, nums: List[int]) -> int:
-		dic = {}
-		max = 0
-		for n in nums:
-			if n in dic:
-				dic[n] += 1
-			else:
-				dic[n] = 1
-		for key in dic:
-			if dic[key] > max:
-				max = dic[key]
-				ans = key
-		return ans
+    def majorityElement3(self, nums: List[int]) -> int:
+        nums.sort()
+        return nums[len(nums)//2]
+
+    def majorityElement2(self, nums: List[int]) -> int:
+        map = {}
+        for n in nums:
+            if n in map:
+                map[n] += 1
+            else:
+                map[n] = 1
+        return max(map, key=map.get)
+
+    def majorityElement(self, nums: List[int]) -> int:
+        dic = {}
+        max = 0
+        for n in nums:
+            if n in dic:
+                dic[n] += 1
+            else:
+                dic[n] = 1
+        for key in dic:
+            if dic[key] > max:
+                max = dic[key]
+                ans = key
+        return ans
 
 sol = Solution()
 print(sol.majorityElement([3,2,3]))

@@ -1,7 +1,7 @@
 from typing import List
 
 class Solution:
-	def removeElement(self, nums: List[int], val: int) -> int:
+	def removeElement2(self, nums: List[int], val: int) -> int:
 		i = 0
 		for j in range(len(nums)):
 			if nums[j] != val:
@@ -10,7 +10,7 @@ class Solution:
 		return i
 
 
-# faster below:
+# faster below and in place!!:
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
         for i in range(len(nums)-1,-1,-1):
@@ -19,6 +19,8 @@ class Solution:
         return len(nums)
 
 # 27. Remove Element
+
+# Easy
 
 # Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
 

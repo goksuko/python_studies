@@ -1,18 +1,26 @@
 from typing import List
 
 class Solution:
-	def removeDuplicates(self, nums: List[int]) -> int:
-		i = 1
-		j = 1
-		for i in range (1, len(nums)):
-			if nums[i] != nums[i - 1]:
-				nums[j] = nums[i]
-				j += 1
-		return j
+    #i did it!! beats %100
+    def removeDuplicates(self, nums: List[int]) -> int:
+        for i in range(len(nums) - 1,0,-1):
+            print(nums[i])
+            if nums[i] == nums[i - 1]:
+                del(nums[i])
+        return (len(nums))
+    
+
+    def removeDuplicates2(self, nums: List[int]) -> int:
+        i = 1
+        j = 1
+        for i in range (1, len(nums)):
+            if nums[i] != nums[i - 1]:
+                nums[j] = nums[i]
+                j += 1
+        return j
 
 #faster below:
-class Solution:
-    def main(nums: List[int]) -> int:
+    def removeDuplicates3(self, nums: List[int]) -> int:
         curr = 0
         last = None
         for n in nums:
@@ -22,6 +30,12 @@ class Solution:
             nums[curr] = n
             curr += 1
         return curr
+    
+sol = Solution()
+nums = [1,1,2]
+print(sol.removeDuplicates(nums)) # 2
+nums = [0,0,1,1,1,2,2,3,3,4]
+print(sol.removeDuplicates(nums)) # 5
 
 # 26. Remove Duplicates from Sorted Array
 
