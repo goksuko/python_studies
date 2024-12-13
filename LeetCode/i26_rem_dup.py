@@ -1,12 +1,13 @@
 from typing import List
 
 class Solution:
-    #i did it!! beats %100
+    #i did it!! beats %100 sometimes %50!
     def removeDuplicates(self, nums: List[int]) -> int:
         for i in range(len(nums) - 1,0,-1):
             print(nums[i])
             if nums[i] == nums[i - 1]:
                 del(nums[i])
+                # it works also if it deletes nums[i-1] but beats onbly %21!!
         return (len(nums))
     
 

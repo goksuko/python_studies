@@ -11,12 +11,28 @@ class Solution:
 
 
 # faster below and in place!!:
-class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
-        for i in range(len(nums)-1,-1,-1):
-            if nums[i] == val:
-                del(nums[i])        
-        return len(nums)
+	def removeElement3(self, nums: List[int], val: int) -> int:
+		for i in range(len(nums)-1,-1,-1):
+			if nums[i] == val:
+				del(nums[i])        
+		return len(nums)
+	
+ # my solution
+	def removeElement(self, nums: List[int], val: int) -> int:
+		end = len(nums) - 1
+		for point in range(len(nums) - 1, -1, -1):
+			if nums[point] == val:
+				nums[point] = nums[end]
+				end -= 1
+		return end + 1
+
+sol = Solution()
+nums = [3,2,2,3]
+val = 3
+print(sol.removeElement(nums, val), nums)
+nums = [0,1,2,2,3,0,4,2]
+val = 2
+print(sol.removeElement(nums, val), nums)
 
 # 27. Remove Element
 

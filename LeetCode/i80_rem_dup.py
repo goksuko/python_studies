@@ -16,6 +16,20 @@ class Solution:
 				again = True
 		return j
 	
+	#my solution, beats 73 %
+	def removeDuplicates(self, nums: List[int]) -> int:
+		last = None
+		for i in range(len(nums)-1, 0, -1):
+			if nums[i] == nums[i-1]:
+				if nums[i] == last:
+					del(nums[i])
+				else:
+					last = nums[i]
+			else:
+				last = None
+
+		return len(nums)
+
 
 # 80. Remove Duplicates from Sorted Array II
 

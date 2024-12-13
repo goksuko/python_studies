@@ -58,6 +58,21 @@ class Solution:
 # Time complexity: O(n2)
 # Space complexity: O(1)
 
+#anothet brute force, my solution
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        i = 0
+        j = 1
+        while i < len(nums):
+            k = target - nums[i]
+            j = i + 1
+            while j < len(nums):
+                if nums[j] == k:
+                    return [i, j]
+                j += 1
+            i += 1
+
+        
+
 
 nums = [3,4,5,6,5]
 sol = Solution()
@@ -97,3 +112,18 @@ print(sol.twoSum(nums, 10))
 # 2 <= nums.length <= 1000
 # -10,000,000 <= nums[i] <= 10,000,000
 # -10,000,000 <= target <= 10,000,000
+
+# Recommended Time & Space Complexity
+# You should aim for a solution with O(n) time and O(n) space, where n is the size of the input array.
+
+
+# Hint 1
+# A brute force solution would be to check every pair of numbers in the array. This would be an O(n^2) solution. Can you think of a better way? Maybe in terms of mathematical equation?
+
+
+# Hint 2
+# Given, We need to find indices i and j such that i != j and nums[i] + nums[j] == target. Can you rearrange the equation and try to fix any index to iterate on?
+
+
+# Hint 3
+# we can iterate through nums with index i. Let difference = target - nums[i] and check if difference exists in the hash map as we iterate through the array, else store the current element in the hashmap with its index and continue. We use a hashmap for O(1) lookups.
