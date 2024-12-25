@@ -1,6 +1,19 @@
 from typing import List
 
 class Solution:
+#stack, bence daha anlasilir
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        res = [0] * len(temperatures)
+        stack = []  # pair: [temp, index]
+
+        for i in range(len(temperatures)):
+            while stack and temperatures[i] > stack[-1][1]:
+                stackInd, stackTemp = stack.pop()
+                res[stackInd] = i - stackInd
+            stack.append((i, temperatures[i]))
+        return res
+    
+    
 #dynamic programming
     def dailyTemperatures3(self, temperatures: List[int]) -> List[int]:
         n = len(temperatures)
@@ -41,9 +54,10 @@ class Solution:
                 print("in while")
                 print(f"t({t}) > stack[-1][0]({stack[-1][0]})")
                 stackT, stackInd = stack.pop()
-                print(f"stackInd: {stackInd}")
+                print(f"popped_stackInd: {stackInd}")
                 res[stackInd] = i - stackInd
                 print(f"res[stackInd]: {res[stackInd]} = i({i}) - stackInd({stackInd})")
+                print(f"res[] = {res}")
             stack.append((t, i))
             print(f"stack: {stack}")
         return res
@@ -52,7 +66,7 @@ class Solution:
 # Space Complexity: O(n)          
             
 #brute force
-    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+    def dailyTemperatures1(self, temperatures: List[int]) -> List[int]:
         result = []
         for i in range(len(temperatures)):
             for j in range(i + 1, len(temperatures)):
@@ -67,12 +81,12 @@ class Solution:
 	
 sol = Solution()
 temperatures = [30,38,30,36,35,40,28]
-print(f"Input: {temperatures}")
-print(sol.dailyTemperatures2(temperatures))
+print(f"\n-------------\nInput: {temperatures}")
+print(sol.dailyTemperatures(temperatures))
 # Output: [1,4,1,2,1,0,0]            
 temperatures = [30,38,30,30,36,35,34,33,40,41,42,28]
-print(f"Input: {temperatures}")
-print(sol.dailyTemperatures2(temperatures))
+print(f"\n-------------\nInput: {temperatures}")
+print(sol.dailyTemperatures(temperatures))
             
             
             
