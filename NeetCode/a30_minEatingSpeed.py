@@ -35,7 +35,7 @@ class Solution:
             speed += 1
         return speed
     
-    #does not worspeed for the last ones
+    #does not work for the last ones
     def minEatingSpeed2(self, piles: List[int], h: int) -> int:
         def total_hours(speed: int, piles: List[int]):
             print(f"speed: {speed}")

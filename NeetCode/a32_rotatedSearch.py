@@ -5,21 +5,21 @@ class Solution:
         l, r = 0, len(nums) - 1
 
         while l <= r:
-            mid = (l + r) // 2
-            if target == nums[mid]:
-                return mid
+            m = (l + r) // 2
+            if target == nums[m]:
+                return m
 
-            if nums[l] <= nums[mid]:
-                if target > nums[mid] or target < nums[l]:
-                    l = mid + 1
+            if nums[l] <= nums[m]:
+                if target > nums[m] or target < nums[l]:
+                    l = m + 1
                 else:
-                    r = mid - 1
+                    r = m - 1
                     
             else:
-                if target < nums[mid] or target > nums[r]:
-                    r = mid - 1
+                if target < nums[m] or target > nums[r]:
+                    r = m - 1
                 else:
-                    l = mid + 1
+                    l = m + 1
         return -1
     
     #some edge caes do not work well
@@ -116,8 +116,8 @@ print(f"1 => {sol.search(nums, target)}")
 
 
 # Hint 3
-# We perform a binary search on the array with pointers l and r, which belong to two different sorted segments. For example, in [3, 4, 5, 6, 1, 2, 3], l = 0, r = 6, and mid = 3. At least two of l, mid, and r will always be in the same sorted segment. Can you find conditions to eliminate one half and continue the binary search? Perhaps analyzing all possible conditions for l, mid, and r may help.
+# We perform a binary search on the array with pointers l and r, which belong to two different sorted segments. For example, in [3, 4, 5, 6, 1, 2, 3], l = 0, r = 6, and m = 3. At least two of l, m, and r will always be in the same sorted segment. Can you find conditions to eliminate one half and continue the binary search? Perhaps analyzing all possible conditions for l, m, and r may help.
 
 
 # Hint 4
-# There are two cases: l and mid belong to the left sorted segment, or mid and r belong to the right sorted segment. If l and mid are in the same segment, nums[l] < nums[mid], so the pivot index must lie in the right part. If mid and r are in the same segment, nums[mid] < nums[r], so the pivot index must lie in the left part. After the binary search, we eventually find the pivot index. Once the pivot is found, it's straightforward to select the segment where the target lies and perform a binary search on that segement to find its position. If we don't find the target, we return -1.
+# There are two cases: l and m belong to the left sorted segment, or m and r belong to the right sorted segment. If l and m are in the same segment, nums[l] < nums[m], so the pivot index must lie in the right part. If m and r are in the same segment, nums[m] < nums[r], so the pivot index must lie in the left part. After the binary search, we eventually find the pivot index. Once the pivot is found, it's straightforward to select the segment where the target lies and perform a binary search on that segement to find its position. If we don't find the target, we return -1.

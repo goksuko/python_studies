@@ -1,50 +1,51 @@
 from typing import List
 from collections import defaultdict
 from sortedcontainers import SortedDict
+import time
 
 
-#brute force
-class TimeMap:
-    def __init__(self):
-        self.keyStore = {}
+# #brute force
+# class TimeMap:
+#     def __init__(self):
+#         self.keyStore = {}
 
-    def set(self, key: str, value: str, timestamp: int) -> None:
-        if key not in self.keyStore:
-            self.keyStore[key] = {}
-        if timestamp not in self.keyStore[key]:
-            self.keyStore[key][timestamp] = []
-        self.keyStore[key][timestamp].append(value)
+#     def set(self, key: str, value: str, timestamp: int) -> None:
+#         if key not in self.keyStore:
+#             self.keyStore[key] = {}
+#         if timestamp not in self.keyStore[key]:
+#             self.keyStore[key][timestamp] = []
+#         self.keyStore[key][timestamp].append(value)
 
-    def get(self, key: str, timestamp: int) -> str:
-        if key not in self.keyStore:
-            return ""
-        seen = 0
+#     def get(self, key: str, timestamp: int) -> str:
+#         if key not in self.keyStore:
+#             return ""
+#         seen = 0
 
-        for time in self.keyStore[key]:
-            if time <= timestamp:
-                seen = max(seen, time)
-        return "" if seen == 0 else self.keyStore[key][seen][-1]
+#         for time in self.keyStore[key]:
+#             if time <= timestamp:
+#                 seen = max(seen, time)
+#         return "" if seen == 0 else self.keyStore[key][seen][-1]
     
 
-# 2. Binary Search (Sorted Map)
-class TimeMap2:
-    def __init__(self):
-        self.m = defaultdict(SortedDict)
+# # 2. Binary Search (Sorted Map)
+# class TimeMap2:
+#     def __init__(self):
+#         self.m = defaultdict(SortedDict)
 
-    def set(self, key: str, value: str, timestamp: int) -> None:
-        self.m[key][timestamp] = value
+#     def set(self, key: str, value: str, timestamp: int) -> None:
+#         self.m[key][timestamp] = value
 
-    def get(self, key: str, timestamp: int) -> str:
-        if key not in self.m:
-            return ""
+#     def get(self, key: str, timestamp: int) -> str:
+#         if key not in self.m:
+#             return ""
         
-        timestamps = self.m[key]
-        idx = timestamps.bisect_right(timestamp) - 1
+#         timestamps = self.m[key]
+#         idx = timestamps.bisect_right(timestamp) - 1
         
-        if idx >= 0:
-            closest_time = timestamps.iloc[idx]
-            return timestamps[closest_time]
-        return ""
+#         if idx >= 0:
+#             closest_time = timestamps.iloc[idx]
+#             return timestamps[closest_time]
+#         return ""
 
 # 3. Binary Search (Array)
 
@@ -57,6 +58,7 @@ class TimeMap:
         if key not in self.keyStore:
             self.keyStore[key] = []
         self.keyStore[key].append([value, timestamp])
+        print(f"keyStore: {self.keyStore}")
 
     def get(self, key: str, timestamp: int) -> str:
         res, values = "", self.keyStore.get(key, [])
@@ -85,10 +87,21 @@ timeMap.get("alice", 1);           # return "happy"
 timeMap.get("alice", 2);           # return "happy", there is no value stored for timestamp 2, thus we return the value at timestamp 1.
 timeMap.set("alice", "sad", 3);    # store the key "alice" and value "sad" along with timestamp = 3.
 timeMap.get("alice", 3);           # return "sad"
+timeMap.set("prince", "a", 1);   
+timeMap.set("prince", "b", 2);   
+timeMap.set("prince", "d", 4);   
+timeMap.set("prince", "e", 5);
+t = int(time.time())
+print(t)
+
 print(f"happy => {timeMap.get('alice', 1)}")
 print(f"happy => {timeMap.get('alice', 2)}")
 print(f"sad => {timeMap.get('alice', 3)}")
-
+print(f"a => {timeMap.get('prince', 1)}")
+print(f"b => {timeMap.get('prince', 2)}")
+print(f"d => {timeMap.get('prince', 3)}")
+print(f"d => {timeMap.get('prince', 4)}")
+print(f"e => {timeMap.get('prince', 5)}")
 
 
 # Time Based Key-Value Store

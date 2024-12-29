@@ -1,6 +1,7 @@
 from typing import List
 
 class Solution:
+    #better than traditional
     def findMin(self, nums: List[int]) -> int:
         l, r = 0, len(nums) - 1
         while l < r:
@@ -10,6 +11,23 @@ class Solution:
             else:
                 l = m + 1
         return nums[l]
+    
+    def findMin(self, nums: List[int]) -> int:
+        res = nums[0]
+        l, r = 0, len(nums) - 1
+
+        while l <= r:
+            if nums[l] < nums[r]: # if we get to a position where the array is sorted, we can return the first element
+                res = min(res, nums[l])
+                break
+            
+            m = (l + r) // 2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
+            else:
+                r = m - 1
+        return res
     
     #edge cases does not work well
     def findMin2(self, nums: List[int]) -> int:

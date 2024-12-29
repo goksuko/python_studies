@@ -1,0 +1,33 @@
+# CodeSignal Tips from someone with 844 & 843
+# It seems there's some general anguish about CodeSignal so I thought I may share some tips
+
+# I have verified scores of 844 and 843 spaced a year apart and the most recent one was 3 days ago
+
+# I lost points on speed exclusively
+
+# You'll notice one question is repeated, but I think it's safe to say I don't remember the soln to a q I did a year ago.
+
+
+# Tips:
+
+# Run often, submit often. You don't lose points for submitting many incorrect solns before a correct one, so don't wait. As soon as you have a soln run and submit it.
+
+# Do one problem at a time. The way the speed score is determined doesn't help you if you choose to jump between problems before solving one since your total time for the problem is aggregated.
+
+# Don't format your code. After doing a couple of these I'm almost certain that the formatting or cleanliness of your code does not factor into your final score so don't waste time on it like I did.
+
+# Don't use a verbose language even if it's fast. 70 min isn't a long time, if you're using Java you're shooting yourself in the foot. Use Python or smth similar so you can write up the solns quickly.
+
+# If CodeSignal won't print your error use a try except (or equivalent) to print your error
+
+# Practice working with 2D arrays and maps (dicts). Work on iterating through a 2D array in unconventional ways (i.e. column then row, a spiral inwards, a spiral outwards, skipping certain rows, etc) so you get practice.
+
+# Implement the easy obvious soln first, don't try to optimize until you hit a TLE. Optimized solns can take more time and don't necessarily get you more points.
+
+# The data structure they give you isn't the data structure you have to work with. Change the data structure of the input variables if it makes your implementation easier/faster.
+
+# Prior to taking the CodeSignal practice one topic at a time. Don't jump from DP to Graph Theory to string manipulation. Take the time to do a set of problems in a specific problem space before moving on. That way you truly start recognizing when a problem fits that pattern.
+
+# I'd love to hear if anyone disagrees or has any tips to add.
+
+# I recognize t's not advantageous for me to share these tips since I'm also competing for the same positions, but I think some great engineers may lose out on positions simply because of the way CodeSignal works and that would suck for everyone.
