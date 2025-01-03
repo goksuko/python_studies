@@ -1,7 +1,7 @@
 class Solution:
 	 
 	# 2. Sliding Window
-	def lengthOfLongestSubstring(self, s: str) -> int:
+	def lengthOfLongestSubstring2(self, s: str) -> int:
 		charSet = set()
 		l = 0
 		res = 0
@@ -22,7 +22,7 @@ class Solution:
 	# Where n is the length of the string and m is the total number of unique characters in the string
 
 	# 3. Sliding Window Optimal
-	def lengthOfLongestSubstring2(self, s: str) -> int:
+	def lengthOfLongestSubstring(self, s: str) -> int:
 		mp = {}
 		l = 0
 		res = 0
@@ -32,7 +32,7 @@ class Solution:
 				l = max(mp[s[r]] + 1, l)
 			mp[s[r]] = r
 			res = max(res, r - l + 1)
-			# print(f"r: {r}, mp: {mp}, res: {res}")
+			print(f"r: {r}, mp: {mp}, res: {res}")
 		return res
 	
 	# Time complexity: O(n)

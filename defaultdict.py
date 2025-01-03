@@ -20,9 +20,7 @@ print(d) # defaultdict(<class 'list'>, {'fruits': ['apple'], 'vegetables': ['car
 # is printed
 print(d['juices']) # []
 
-from collections import defaultdict
-
-    
+   
 # Defining the dict and passing 
 # lambda as default_factory argument
 d = defaultdict(lambda: "Not Present")
@@ -33,20 +31,12 @@ print(d["a"]) # 1
 print(d["b"]) # 2
 print(d["c"]) # Not Present
 
-from collections import defaultdict
-  
-# Defining the dict
-d = defaultdict(lambda: "Not Present")
-d["a"] = 1
-d["b"] = 2
 
 # Provides the default value 
 # for the key
 print(d.__missing__('a')) # Not Present
 print(d.__missing__('d')) # Not Present
 
-from collections import defaultdict
- 
 # Defining the dict
 d = defaultdict(int)
  
@@ -76,7 +66,8 @@ d = {}
 d.setdefault('key', []).append(1)
 print(d)  # {‘key’: [1]}
 
-# setdefault is used to insert a key with a default value if the key is not already in the dictionary. This is useful for avoiding repeated key existence checks and manual insertion.
+# setdefault is used to insert a key with a default value if the key is not already in the dictionary. 
+# This is useful for avoiding repeated key existence checks and manual insertion.
 
 d = {}
 d.setdefault('key', []).append(1)

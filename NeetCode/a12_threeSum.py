@@ -9,18 +9,20 @@ class Solution:
 		print(nums)
 		# [-4, -1, -1, 0, 1, 2]
 
-		for i, a in enumerate(nums):
-			if a > 0:
-				break
+		for index, num in enumerate(nums):
+			if num > 0:
+				break # if the current number is greater than zero, the sum of the three numbers will always be greater than zero.
+			# To break out of a loop
 			print(f"Index: {i}, Number: {a}")
 			# Index: 0, Number: -4
 			# Index: 1, Number: -1
 			# Index: 2, Number: -1
 			# Index: 3, Number: 0
 
-			if i > 0 and a == nums[i - 1]:
-				continue
-			# Index: 0, Number: -4
+			if index > 0 and num == nums[index - 1]:
+				continue # skips duplicate elements in the outer loop to avoid processing the same element multiple times as the first element of the triplet.
+			# To continue to the next iteration of a loop
+   			# Index: 0, Number: -4
 			# Index: 1, Number: -1
 			######## Index: 2, Number: -1
 			# Index: 3, Number: 0
@@ -28,15 +30,15 @@ class Solution:
 			# as the first element of the triplet.
 			# However, this does not handle duplicates for the second and the third elements.
 
-			l, r = i + 1, len(nums) - 1
+			l, r = index + 1, len(nums) - 1
 			while l < r:
-				threeSum = a + nums[l] + nums[r]
+				threeSum = num + nums[l] + nums[r]
 				if threeSum > 0:
 					r -= 1
 				elif threeSum < 0:
 					l += 1
 				else:
-					res.append([a, nums[l], nums[r]])
+					res.append([num, nums[l], nums[r]])
 					l += 1
 					r -= 1
 					while nums[l] == nums[l - 1] and l < r:

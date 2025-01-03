@@ -6,15 +6,19 @@ class Solution:
 		area = 0
 		max_area = 0
 		l = 0
-		r = len(heights) - 1
-		while l < len(heights) - 1 and r > 0:
+		r = len(heights) - 1          
+		while l < len(heights) - 1 and r > 0:  # l: 0 1 2 3 4 5 6 # r: 6 5 4 3 2 1 
 			area = min(heights[l], heights[r]) * (r - l)
 			max_area = max(area, max_area)
-			# print(f"{l}, {r}, {area}, {max_area}")
+			print(f"l: {l}, r: {r}, area: {area}, max: {max_area}")
+			print(f"heights[l]: {heights[l]}, heights[r]: {heights[r]}")
 			if heights[l] < heights[r]:
 				l += 1
+				print("l increases 1")
 			else:
 				r -= 1
+				print("r decreases 1")
+			
 		return max_area
 
 	# 1. Brute Force
@@ -34,6 +38,8 @@ class Solution:
 sol = Solution()
 print(36)
 print(sol.maxArea([1,7,2,5,4,7,3,6]))
+print(36)
+print(sol.maxArea([1,7,2,5,4,8,3,6]))
 print(4)
 print(sol.maxArea([2,2,2]))
 

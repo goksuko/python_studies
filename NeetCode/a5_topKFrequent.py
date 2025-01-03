@@ -1,9 +1,26 @@
 from typing import List
 
 class Solution:
-    
-# 3. Bucket Sort
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        mp = {}
+        ordered = [[] for _ in range(len(nums) + 1)]
+        res = []
+        for n in nums:
+            mp[n] = mp.get(n, 0) + 1
+        print(mp)
+        for key, value in mp.items():
+            ordered[value].append(key)
+        print(ordered)
+        for value in range(len(ordered) - 1, 0, -1):
+            print(ordered[value])
+            for key in ordered[value]:
+                print(key)
+                res.append(key)
+                if len(res) == k:
+                    return res 
+       
+# 3. Bucket Sort
+    def topKFrequent4(self, nums: List[int], k: int) -> List[int]:
         count = {}
         freq = [[] for i in range(len(nums) + 1)]
 

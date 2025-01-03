@@ -1,3 +1,20 @@
+from collections import deque 
+import collections
+
+de = collections.deque([1, 2, 3])
+de.append()
+de.appendleft()
+de.pop()
+de.popleft()
+de.index()
+de.insert()
+de.remove()
+de.count()
+de.extend()
+de.extendleft()
+de.rotate()
+de.reverse()
+
 # Deque (Doubly Ended Queue) in Python is implemented using the module “collections“. Deque is preferred over a list in the cases where we need quicker append and pop operations from both the ends of the container, as deque provides an O(1) time complexity for append and pop operations as compared to a list that provides O(n) time complexity.
 
 # Types of Restricted Deque Input
@@ -116,3 +133,4 @@ de.reverse()
 # printing modified deque
 print ("The deque after reversing deque is : ")
 print (de) # deque([7, 8, 9, 6, 5, 4, 3, 2, 1])
+

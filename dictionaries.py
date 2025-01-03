@@ -1,5 +1,6 @@
 from collections import defaultdict
 from rich import print
+from typing import List
 
 my_def_dict = defaultdict()
 my_dict = {}
@@ -51,8 +52,38 @@ class Solution:
         print(dic)
         dic["d"] = dic.setdefault("d", 5) + 1
         print(dic)
+        dic.pop("a")
+        print(dic)
+        dic["g"] = 3
+        dic["f"] = 1
+        dic["e"] = 2
+        print(dic)
+        dic.popitem() # removes the last item inserted
+        print(dic)
+        dic.clear()
+        print(dic)
    
      
 sol = Solution()
 # print(sol.characterReplacement("hello", 1))
 sol.trial()
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        mp = {}
+        ordered = [[] for _ in range(len(nums) + 1)]
+        res = []
+        for n in nums:
+            mp[n] = mp.get(n, 0) + 1
+        for key, value in mp.items():
+            ordered[value].append(key) # olusuturulmus dictionarydeki key karsiligindaki value ya gore nasil siralama yapabiliriz icin guzel bir ornek
+        print(ordered)
+        for value in range(len(ordered) - 1, 0, -1):
+            print(ordered[value])
+            for key in ordered[value]:
+                print(key)
+                res.append(key)
+                if len(res) == k:
+                    return res 
+                
+                
