@@ -5,16 +5,22 @@ class Solution:
         l, r = 0, len(nums) - 1
 
         while l <= r:
-            # (l + r) // 2 can lead to overflow
-            m = l + ((r - l) // 2)  
+            mid = (l + r) // 2
+            if target == nums[mid]:
+                return mid
 
-            if nums[m] > target:
-                r = m - 1
-            elif nums[m] < target:
-                l = m + 1
+            if nums[l] <= nums[mid]:
+                if target > nums[mid] or target < nums[l]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+                    
             else:
-                return m
-        return -1
+                if target < nums[mid] or target > nums[r]:
+                    r = mid - 1
+                else:
+                    l = mid + 1
+        return -1          
 
 
 sol = Solution()
