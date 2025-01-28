@@ -35,6 +35,10 @@ class Solution:
         print(d)
         d.sort(key = lambda x: x[0])
         print(d)
+        e = sorted(d, key = lambda x: x[0])
+        print(e)
+        f = [[0] * 2 for _ in range(5)]
+        print(f)
         
 sol = Solution()
 sol.trial()

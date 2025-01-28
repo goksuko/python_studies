@@ -1,0 +1,15 @@
+append(x) – Add an item to the right side of the queue.
+appendleft(x) – Add an item to the left side of the queue.
+popleft() – Remove and return an item from the left side of the queue.
+pop() – Remove and return an item from the right side of the queue.
+extend(iterable) – Extend the right side of the queue by appending elements from the iterable.
+extendleft(iterable) – Extend the left side of the queue by appending elements from iterable. Note, the series of left appends results in reversing the order of elements in the iterable argument.
+rotate(n) – Rotate the queue n steps to the right. If n is negative, rotate to the left.
+clear() – Remove all elements from the queue leaving it with length 0.
+copy() – Create a shallow copy of the queue.
+count(x) – Count the number of items in the queue that equal x.
+remove(value) – Remove the first occurrence of value. If not found, a ValueError is raised.
+reverse() – Reverse the elements of the queue in-place.
+index(x) – Return the position of x in the queue. If x is not found, a ValueError is raised.
+maxlen – Maximum size of a queue or None if unbounded.
+insert(i, x) – Insert an item at position i.

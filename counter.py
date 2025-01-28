@@ -6,7 +6,8 @@ x.keys()
 x.values()
 
 
-# Counter is a sub-class that is used to count hashable objects. It implicitly creates a hash table of an iterable when invoked.
+# Counter is a sub-class that is used to count hashable objects. 
+# It implicitly creates a hash table of an iterable when invoked.
 
 # Parameters : Doesn’t take any parameters
 # Return type : Returns an itertool for all the elements with positive count in the Counter object
@@ -21,10 +22,19 @@ from collections import Counter
 # string as an iterable data container
 x = Counter("geeksforgeeks")
 print(x) # Counter({'e': 4, 'g': 2, 'k': 2, 's': 2, 'f': 1, 'o': 1, 'r': 1})
+y = Counter(['a', 'b', 'c', 'a', 'b', 'b'])
+print(y) # Counter({'b': 3, 'a': 2, 'c': 1})
+z = {1: [1], 2: [2,3], 3: [4,5,6], 4: [7,8,9,10]}
+t = Counter(z)
+print(t) # Counter({4: [7, 8, 9, 10], 3: [4, 5, 6], 2: [2, 3], 1: [1]})
+print(t[4]) # [7, 8, 9, 10]
 
 # printing the elements of counter object
 for i in x.elements():
-    print ( i, end = " ") # g g e e e e k k s s f o r
+    print (i, end = " ") # g g e e e e k k s s f o r
+
+# elements() method of Counter class
+
     
 # will return a itertools chain object
 # which is basically a pseudo iterable container whose

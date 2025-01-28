@@ -42,13 +42,13 @@ class Solution:
         print(dic["a"])
         # print(dic["b"]) # gives Key Error
         print(dic)
-        print(dic.get("b", 0))
+        print(dic.get("b", 0)) # if the key is not in the dictionary, return 0 but do not add it to the dictionary
         print(dic)
-        dic["b"] = dic.get("b", 0) + 1
+        dic["b"] = dic.get("b", 0) + 1 
         print(dic)
         dic["a"] = 3
         print(dic)
-        print(dic.setdefault("c", 0))
+        print(dic.setdefault("c", 0)) # if the key is not in the dictionary, set it to 0, return 0 and add it to the dictionary
         print(dic)
         dic["d"] = dic.setdefault("d", 5) + 1
         print(dic)
@@ -70,11 +70,14 @@ sol.trial()
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        print(nums)
         mp = {}
         ordered = [[] for _ in range(len(nums) + 1)]
+        print(ordered)
         res = []
         for n in nums:
             mp[n] = mp.get(n, 0) + 1
+        print(mp)
         for key, value in mp.items():
             ordered[value].append(key) # olusuturulmus dictionarydeki key karsiligindaki value ya gore nasil siralama yapabiliriz icin guzel bir ornek
         print(ordered)
@@ -85,5 +88,20 @@ class Solution:
                 res.append(key)
                 if len(res) == k:
                     return res 
+
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        print(nums)
+        ordered = []
+        mp = {}
+        for n in nums:
+            mp[n] = mp.get(n, 0) + 1
+        print(mp)
+        for key, value in mp.items():
+            ordered.append((-value, key))
+        ordered.sort()
+        print(ordered)
+        return [key for min_val, key in ordered[:k]]          
                 
-                
+sol = Solution()
+print("topKFrequent")
+print(sol.topKFrequent([1, 1, 1, 2, 2, 3], 2)) # [1, 2]                

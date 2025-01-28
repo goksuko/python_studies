@@ -1,0 +1,4 @@
+elements() – Return a list of all elements in the queue.
+** elemnets here is different from elements in the dictionary module.
+keys() – Return a list of all keys in the queue.
+values() – Return a list of all values in the queue.

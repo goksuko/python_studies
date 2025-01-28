@@ -10,9 +10,9 @@ class Solution:
 
         for i in range(n - 1):
             farthest = max(farthest, i + nums[i])
-            print(f"i: {i}, farthest: {farthest}")
+            print(f"****i: {i}, farthest: {farthest}")
             if i == current_end:
-                print(f" i = current_end = {i}")
+                print(f"i = current_end = {i}")
                 jumps += 1
                 print(f"jumps: {jumps}")
                 current_end = farthest
@@ -21,9 +21,13 @@ class Solution:
         return jumps
 
 sol = Solution()
+print("--------2---------")
 print(sol.jump([2,3,1,1,4])) # 2
+print("--------2---------")
 print(sol.jump([2,3,0,1,4])) # 2
+print("--------1---------")
 print(sol.jump([5,3,0,1,4])) # 1
+print("--------2---------")
 print(sol.jump([1,2,3])) # 2
 
 
