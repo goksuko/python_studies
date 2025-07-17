@@ -6,6 +6,18 @@ class Solution(object):
         :type cost: List[int]
         :rtype: int
         """
+        if sum(gas) < sum(cost):
+            return -1
+                
+        current_gas = 0
+        start = 0
+        for i in range(len(gas)):
+            current_gas += gas[i] - cost[i]
+            if current_gas < 0:
+                current_gas = 0
+                start = i + 1
+
+        return start
         
         
 sol = Solution()
@@ -18,6 +30,10 @@ print("-1: ", sol.canCompleteCircuit(gas, cost))
 gas = [5,1,2,3,4]
 cost = [4,4,1,5,1]
 print("4: ", sol.canCompleteCircuit(gas, cost))
+gas = [5,8,2,8]
+cost = [6,5,6,6]
+print("3: ", sol.canCompleteCircuit(gas, cost))
+
 
 # 134. Gas Station
 # Medium

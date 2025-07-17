@@ -1,4 +1,4 @@
-class Solution(object):
+class Solution(object): 
     def maxArea(self, height):
         """
         :type height: List[int]
@@ -17,7 +17,27 @@ class Solution(object):
                 i += 1
         return water
             
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        i, j = 0, len(height) - 1
+        cr = 0
+
+        while i != j:
+            length = max(i+1,j+1) - min(i+1,j+1)
+
+            if height[i] >= height[j]:
+                volume = height[j] * length
+                j-=1
+            else:
+                volume = height[i] * length
+                i+=1
+            if volume > cr:
+                cr = volume
         
+        return(cr)        
         
 sol = Solution()
 print("49: ", sol.maxArea([1,8,6,2,5,4,8,3,7]))

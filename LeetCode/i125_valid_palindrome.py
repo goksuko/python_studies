@@ -1,7 +1,27 @@
 from typing import List
 
-class Solution:
+class Solution(object):
 	def isPalindrome(self, s):
+		"""
+		:type s: str
+		:rtype: bool
+		"""
+		s = s.lower()
+		i = 0
+		j = len(s) - 1
+		while (i <= j):
+			while i <= j and not s[i].isalnum():
+				i += 1
+			while i <= j and not s[j].isalnum():
+				j -= 1
+			if i <= j and s[i] != s[j]:
+				return False
+			i += 1
+			j -= 1
+		return True    
+	
+	
+	def isPalindrome3(self, s):
 
 		def toChars(s):
 			s = s.lower()
@@ -41,6 +61,10 @@ print("True:", sol.isPalindrome("A man, a plan, a canal: Panama"))
 print("False:", sol.isPalindrome("race a car"))
 print("True:", sol.isPalindrome(" "))
 print("False:", sol.isPalindrome("0P"))
+
+
+# Popular Company Questions by Topic – Vol. 2
+# Sliding Window & Two Pointer
 
 # 125. Valid Palindrome
 # Easy

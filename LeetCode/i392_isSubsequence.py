@@ -1,12 +1,31 @@
 
 class Solution(object):
+    # this is slower
     def isSubsequence(self, s, t):
         """
         :type s: str
         :type t: str
         :rtype: bool
         """
+        if len(s) > len(t):
+            return False
+        i, j = 0, 0
+        while i < len(s) and j < len(t):
+            while j < len(t) and s[i] != t[j]:
+                j += 1
+            while i < len(s) and j < len(t) and s[i] == t[j]:
+                i += 1
+                j += 1
+        return i == len(s)
         
+        
+    def isSubsequence2(self, s, t):
+        """
+        :type s: str
+        :type t: str
+        :rtype: bool
+        """
+             
         if len(s) > len(t):
             return False
         if len(s) == 0:

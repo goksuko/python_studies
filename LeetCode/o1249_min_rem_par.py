@@ -1,28 +1,60 @@
-#needs stack, to be continued
+class Solution(object):
+	# with stack
+	def minRemoveToMakeValid(self, s):
+		s = list(s)
+		stack = []
+		for i in range(len(s)):
+			if s[i] == '(':
+				stack.append(i)
+			elif s[i] == ')':
+				if stack:
+					stack.pop()  
+				else:
+					s[i] = ''  
+		for i in stack:
+			s[i] = ''
 
-
-class Solution:
-	def minRemoveToMakeValid(self, s: str) -> str:
+		return ''.join(s)
+	
+	
+	# without stack
+	def minRemoveToMakeValid2(self, s):
+		"""
+		:type s: str
+		:rtype: str
+		"""
+		arr = list(s)
 		open = 0
-		for ind in range(len(s)):
-			if s[ind] == '(':
+		for i in range(len(arr)):
+			if arr[i] == '(':
 				open += 1
-			elif s[ind] == ')':
-				if open <= 0:
-					s = s[:ind] + s[ind+1:]
-					ind -= 1
-					continue
+			elif arr[i] == ')':
+				if open == 0:
+					arr[i] = '$'
 				else:
 					open -= 1
-		if open > 0:
-			for ind in range(len(s)-1, -1, -1):
-				if s[ind] == '(':
-					s = s[:ind] + s[ind+1:]
-					open -= 1
-					if open == 0:
-						break
-		return s
 
+		close = 0
+		for i in range(len(arr) - 1, -1, -1):
+			if arr[i] == ')':
+				close += 1
+			elif arr[i] == '(':
+				if close == 0:
+					arr[i] = '$'
+				else:
+					close -= 1
+	 
+		return "".join(c for c in arr if c != '$')
+
+sol = Solution()
+s = "lee(t(c)o)de)"
+print("lee(t(c)o)de:", sol.minRemoveToMakeValid(s))  # Output: "lee(t(c)o)de"
+s = "a)b(c)d"
+print("ab(c)d:", sol.minRemoveToMakeValid(s))  # Output: "ab(c)d"
+s = "))(("
+print(":", sol.minRemoveToMakeValid(s))  # Output: ""
+		
+		
 
 # 1249. Minimum Remove to Make Valid Parentheses
 # Medium
