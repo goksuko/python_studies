@@ -6,6 +6,18 @@ class TreeNode(object):
         self.left = left
         self.right = right
 class Solution(object):
+    def maxDepth(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        if not root:
+            return 0
+        else:
+            left=self.maxDepth(root.left)
+            right=self.maxDepth(root.right)
+            return 1+ max(left,right)
+    
     def maxDepth(self, root): #beats 100 %
         def height(root):
             if root==None:

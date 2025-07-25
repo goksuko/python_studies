@@ -1,4 +1,37 @@
 class Solution(object):
+    #  my working solution
+    def longestOnes(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """   
+        start, end = 0, 0
+        ones = 0
+        flip = k
+        ans = 0
+        while end < len(nums):
+            if nums[end] == 1:
+                end += 1
+                ones += 1
+            elif flip:
+                end += 1
+                ones += 1
+                flip -= 1
+            else:
+                while nums[start] == 1:
+                    start += 1
+                    ones -= 1
+                start += 1
+                flip += 1
+                ones -= 1
+            if ones > ans:
+                ans = ones
+        return ans
+    
+    
+    
+    #  older solution
     def longestOnes(self, nums, k):
         """
         :type nums: List[int]
